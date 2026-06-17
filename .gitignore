@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# MLflow
+mlruns/
+
+# Model Artifacts
+artifacts/models/
+*.pth
+*.pt
+*.ckpt
+
+# Dataset
+data/raw/
+data/processed/
+
+# Temporary Files
+temp/
+tmp/
+
+# Cache
+.cache/
+
+# PyTorch
+runs/
+wandb/
+
+# Build Files
+build/
+dist/
+*.egg-info/
+
+# Environment Variables
+.env
+
+# Coverage
+.coverage
+htmlcov/
+
+# Testing
+.pytest_cache/
+
+# Gradio
+gradio_cached_examples/
+
+# Mac/Linux
+*.swp
+*.swo
+
+# Misc
+*.bak
