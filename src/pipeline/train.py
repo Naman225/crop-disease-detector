@@ -12,7 +12,7 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, scheduler
     model = model.to(device)
     
     best_model_path = f"artifacts/{model_name}_best.pth"
-
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
     mlflow.set_experiment('crop-disease-detection')
 
     with mlflow.start_run(run_name = model_name):
@@ -85,7 +85,6 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, scheduler
         mlflow.log_metric("best_val_acc", best_val_acc)
         mlflow.log_artifact(best_model_path)
         model.load_state_dict(torch.load(best_model_path))
-        mlflow.pytorch.log_model(model, artifact_path="model")
         logger.info(f"Training complete. Best val acc: {best_val_acc:.4f}")
     
     return model,best_val_acc
