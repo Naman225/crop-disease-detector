@@ -6,3 +6,5 @@ datasets
 torch
 torchvision
 datasets
+mlflow
+split-folders
