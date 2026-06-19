@@ -1,5 +1,5 @@
 import gradio as gr
-from app.inference import predict, MODELS
+from inference import predict, MODELS
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -43,7 +43,7 @@ demo = gr.Interface(
     [str(BASE_DIR / "examples" / "potato_healthy.jpg"), list(MODELS.keys())[1]],
     [str(BASE_DIR / "examples" / "pepper_bacterial_spot.jpg"), list(MODELS.keys())[0]],
     ],
-    article="[GitHub Repo](your-link-here) | Built by Naman",
+    article="[GitHub Repo](https://github.com/Naman225/crop-disease-detector) | Built by Naman",
 )
 
 if __name__ == "__main__":

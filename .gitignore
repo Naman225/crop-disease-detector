@@ -29,7 +29,7 @@ mlruns/
 mlflow.db
 
 # Artifacts
-artifacts/
+artifacts/models
 
 # Model Checkpoints
 *.pth

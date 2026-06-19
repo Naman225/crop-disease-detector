@@ -3,10 +3,10 @@ import torch.nn.functional as F
 from torchvision import transforms
 from torchvision import models
 import torch.nn as nn
-from src.pipeline.grad_cam import generate_gradcam_image
+from grad_cam import generate_gradcam_image
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent
 MODEL_DIR = ROOT / "artifacts" / "models"
 
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
