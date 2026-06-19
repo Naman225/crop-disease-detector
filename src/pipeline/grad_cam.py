@@ -68,3 +68,57 @@ def generate_grad_cam_grid(model, model_name, image_paths, class_names, save_pat
     plt.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.close()
     logger.info(f"GradCAM grid saved to {save_path}")
+
+
+def generate_gradcam_image(
+    model,
+    model_name,
+    pil_img,
+    device=None
+):
+    device = device or torch.device(
+        "cuda" if torch.cuda.is_available() else "cpu"
+    )
+
+    model = model.to(device).eval()
+
+    transform = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(
+            IMAGENET_MEAN,
+            IMAGENET_STD
+        )
+    ])
+
+    rgb_img = np.array(
+        pil_img.resize((224, 224))
+    ) / 255.0
+
+    input_tensor = (
+        transform(pil_img)
+        .unsqueeze(0)
+        .to(device)
+    )
+
+    target_layer = get_target_layer(
+        model,
+        model_name
+    )
+
+    cam = GradCAM(
+        model=model,
+        target_layers=target_layer
+    )
+
+    grayscale_cam = cam(
+        input_tensor=input_tensor
+    )[0]
+
+    visualization = show_cam_on_image(
+        rgb_img,
+        grayscale_cam,
+        use_rgb=True
+    )
+
+    return visualization

@@ -26,11 +26,12 @@ logs/
 
 # MLflow
 mlruns/
+mlflow.db
 
-# Model Artifacts
-artifacts/models/
-artifacts/metrics/
+# Artifacts
+artifacts/
 
+# Model Checkpoints
 *.pth
 *.pt
 *.ckpt
@@ -45,6 +46,8 @@ tmp/
 
 # Cache
 .cache/
+.gradio/
+gradio_cached_examples/
 
 # PyTorch
 runs/
@@ -65,14 +68,9 @@ htmlcov/
 # Testing
 .pytest_cache/
 
-# Gradio
-gradio_cached_examples/
-
-# Mac/Linux
+# Vim
 *.swp
 *.swo
 
 # Misc
 *.bak
-
-mlflow.db
