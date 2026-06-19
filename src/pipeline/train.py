@@ -1,21 +1,24 @@
 import torch
 import mlflow
 
+import time
 from src.utils.logger import get_logger
 from src.utils.model_utils import save_model
 
 logger = get_logger(__name__)
 
-def train_model(model, train_loader, val_loader, criterion, optimizer, scheduler,model_name, lr, epochs=20):
+def train_model(model, train_loader, val_loader, criterion, optimizer, scheduler,model_name, lr, epochs):
+    since = time.time()
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f"Training on: {device}")
     model = model.to(device)
     
-    best_model_path = f"artifacts/{model_name}_best.pth"
+    best_model_path = f"artifacts/models/{model_name}_best.pth"
     mlflow.set_tracking_uri("sqlite:///mlflow.db")
     mlflow.set_experiment('crop-disease-detection')
 
-    with mlflow.start_run(run_name = model_name):
+    with mlflow.start_run(run_name = model_name) as run:
+        run_id = run.info.run_id
         mlflow.log_params({
             "model" : model_name, 
             "epochs": epochs,
@@ -85,9 +88,15 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, scheduler
         mlflow.log_metric("best_val_acc", best_val_acc)
         mlflow.log_artifact(best_model_path)
         model.load_state_dict(torch.load(best_model_path))
-        logger.info(f"Training complete. Best val acc: {best_val_acc:.4f}")
+        time_elapsed = time.time() - since
+        logger.info(f"Time taken by completition of model training : {time_elapsed // 60:.0f}m {time_elapsed % 60:.0f}s")
+        
+        mlflow.log_metric(
+            f"{model_name}_training_time_seconds",
+            round(time_elapsed, 2)
+        )
     
-    return model,best_val_acc
+    return model, best_val_acc, run_id
 
 
 

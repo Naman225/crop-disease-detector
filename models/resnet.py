@@ -11,7 +11,7 @@ def get_resnet18(num_classes):
 
     return model
 
-def unfreeze_last_block(model):
+def unfreeze_resnet_last_block(model):
     for param in model.layer4.parameters():
         param.requires_grad = True
 

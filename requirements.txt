@@ -2,9 +2,8 @@ numpy
 pandas
 matplotlib
 seaborn
-datasets
 torch
 torchvision
-datasets
 mlflow
 split-folders
+scikit-learn

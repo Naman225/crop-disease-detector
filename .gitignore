@@ -29,6 +29,8 @@ mlruns/
 
 # Model Artifacts
 artifacts/models/
+artifacts/metrics/
+
 *.pth
 *.pt
 *.ckpt
