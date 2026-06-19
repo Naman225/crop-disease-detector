@@ -5,5 +5,7 @@ seaborn
 torch
 torchvision
 mlflow
+gradio
 split-folders
 scikit-learn
+grad-cam
