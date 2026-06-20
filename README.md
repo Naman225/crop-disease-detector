@@ -1,6 +1,6 @@
 # 🌿 Crop Disease Detector
 
-Fine-tuned **ResNet18** and **EfficientNet-B0** for multi-class crop disease classification, trained on the [PlantVillage](https://www.kaggle.com/datasets/snikhilrao/crop-disease-detection-dataset) dataset — **15 classes** across tomato, potato, and pepper plants. Features a complete transfer-learning pipeline with MLflow experiment tracking, model comparison, GradCAM explainability, and a live Gradio demo with **real-time Grad-CAM heatmaps**.
+Fine-tuned **ResNet18** and **EfficientNet-B0** for multi-class crop disease classification, trained on the [PlantVillage](https://www.kaggle.com/datasets/emmarex/plantdisease) dataset — **15 classes** across tomato, potato, and pepper plants. Features a complete transfer-learning pipeline with MLflow experiment tracking, model comparison, GradCAM explainability, and a live Gradio demo with **real-time Grad-CAM heatmaps**.
 
 **[Live Demo](https://huggingface.co/spaces/Naman225/crop-disease-detector)** · **[Dataset](https://www.kaggle.com/datasets/emmarex/plantdisease)**
 
@@ -247,7 +247,6 @@ python main.py
 
 ```bash
 mlflow ui
-# Open http://localhost:5000
 ```
 
 ### Generate GradCAM Grids
@@ -262,7 +261,6 @@ python run_grad_cam.py
 cd app
 pip install -r requirements.txt
 python app.py
-# Open http://localhost:7860
 ```
 
 ---
@@ -290,4 +288,6 @@ Deployed on **Hugging Face Spaces** using the Gradio SDK. The app loads both fin
 
 ---
 
-Built by **Naman** as part of an AI/ML portfolio · Feedback welcome
+## Author 
+
+Built by **Naman Tiwari**  · Feedback welcome
