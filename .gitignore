@@ -74,3 +74,4 @@ htmlcov/
 
 # Misc
 *.bak
+hf_deploy/.git
